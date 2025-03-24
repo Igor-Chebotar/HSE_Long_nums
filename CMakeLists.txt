@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 # Создаём статическую библиотеку из общих исходников
 add_library(LongArithmetic STATIC
         src/LongNumber.cpp
-        src/literal.cpp
 )
 
 # Исполняемый файл для main
