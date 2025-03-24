@@ -1,23 +1,38 @@
 #include "../include/LongNumber.hpp"
 #include <iostream>
-#include <clocale>  // Для std::setlocale
+#include <locale>
 
 int main() {
-    // Устанавливаем локаль (UTF-8).
-    // В Windows может понадобиться переключить консоль на UTF-8 командой: chcp 65001
-    std::setlocale(LC_ALL, "ru_RU.UTF-8");
+    std::setlocale(LC_ALL, "ru_RU.UTF-8");  // корректный вывод русских символов (если нужно)
 
-    // Создаем объект с конструктором по умолчанию
-    LongNumber a;
+    // Демонстрация: создание длинных чисел
+    LongNumber a(1.5L, 16);  // 1.5 с 16 битами точности
+    LongNumber b(2.25L, 16);
 
-    // Создаем объект из литерала с плавающей точкой и точностью 16 бит
-    LongNumber b(3.1415L, 16);
+    // Арифметика
+    LongNumber sum = a + b;
+    LongNumber diff = b - a;
+    LongNumber prod = a * b;
+    LongNumber quot = b / a;
 
-    // Выполняем операцию сложения (пока заглушка)
-    LongNumber c = a + b;
+    // Сравнение
+    bool equal = (a == b);
+    bool greater = (b > a);
 
-    // Выводим значение точности (пример проверки работы метода)
-    std::cout << "Точность: " << c.getPrecision() << std::endl;
+    // Вывод
+    std::cout << "a = " << a.toString(10) << "\n";
+    std::cout << "b = " << b.toString(10) << "\n";
+    std::cout << "a + b = " << sum.toString(10) << "\n";
+    std::cout << "b - a = " << diff.toString(10) << "\n";
+    std::cout << "a * b = " << prod.toString(10) << "\n";
+    std::cout << "b / a = " << quot.toString(10) << "\n";
+
+    std::cout << "a == b: " << (equal ? "true" : "false") << "\n";
+    std::cout << "b > a: " << (greater ? "true" : "false") << "\n";
+
+    // Литеральный оператор
+    LongNumber pi_literal = 3.1415_longnum;
+    std::cout << "Pi literal: " << pi_literal.toString(10) << "\n";
 
     return 0;
 }
